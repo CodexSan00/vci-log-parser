@@ -17,7 +17,7 @@ public class ReportParser {
     public static final String DB_PASS = "workshop_password123";
 
     public static void main(String[] args){
-        String filePath = "mock_diagnostic_report.txt";
+        String filePath = "diagnostic_report.txt";
         String vin = "Not found";
         List<String> dtcCodes = new ArrayList<>();
 

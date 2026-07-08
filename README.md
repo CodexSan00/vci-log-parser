@@ -23,9 +23,15 @@ automative scanners (such as Autocom/Delphi) and structure them into a relationa
 ```bash
     docker compose up -d
 ```
-3. **Provide a sample log:** Place your raw diagnostic report file named "diagnostic_report.txt"
-in the root folder of the project.
-4. **Execute the parser:** Run the vciparser.ReportParser.js class from your preferred IDE.
+3. **Execute the parser:** Run the **VciParserApplication.java** class from your preferred IDE to start the Spring Boot 
+server on port 8080
+4. **Test the API**: Send a raw report text via curl or any API client:
+```bash
+   curl -X POST http://localhost:8080/api/parser/upload \
+  -H "Content-Type: text/plain" \
+  -H "Accept: application/json" \
+  -d "VIN: WDB9340311K1234567 UCE: 10 DTC: P0118 Description: Sensor circuit high" 
+```
 
 ## Database Schema
 The database runs fully normalized using a 1:N (One-to-many) relationship:

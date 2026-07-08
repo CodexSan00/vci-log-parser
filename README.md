@@ -25,7 +25,7 @@ automative scanners (such as Autocom/Delphi) and structure them into a relationa
 ```
 3. **Provide a sample log:** Place your raw diagnostic report file named "diagnostic_report.txt"
 in the root folder of the project.
-4. **Execute the parser:** Run the ReportParser.js class from your preferred IDE.
+4. **Execute the parser:** Run the vciparser.ReportParser.js class from your preferred IDE.
 
 ## Database Schema
 The database runs fully normalized using a 1:N (One-to-many) relationship:

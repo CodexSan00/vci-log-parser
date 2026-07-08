@@ -1,3 +1,5 @@
+package vciparser;
+
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
@@ -64,7 +66,7 @@ public class ReportParser {
                 + ");";
         String createDtcsTable = "CREATE TABLE IF NOT EXISTS vehicle_dtcs ("
                 + "id SERIAL PRIMARY KEY, "
-                + "vehicle_id INT REFERENCES vehicles(id) ON DELETE CASCADE, "
+                + "vehicle_vin VARCHAR(50) REFERENCES vehicles(vin) ON DELETE CASCADE, "
                 + "dtc_code VARCHAR(10) NOT NULL, "
                 + "processed_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP"
                 + ");";

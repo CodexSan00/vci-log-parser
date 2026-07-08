@@ -1,20 +1,29 @@
 package vciparser.model;
 
+import jakarta.persistence.*;
+import java.util.ArrayList;
 import java.util.List;
 
+@Entity
+@Table(name = "vehicles")
 public class Vehicle {
+    @Id
     private String vin;
-    private List<String> dtcCodes;
 
-    public Vehicle(String vin, List<String> dtcCodes){
+    @OneToMany(mappedBy = "vehicle", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @com.fasterxml.jackson.annotation.JsonManagedReference
+    private List<DtcError> dtcs = new ArrayList<>();
+
+    public Vehicle(){}
+
+    public Vehicle(String vin){
         this.vin = vin;
-        this.dtcCodes = dtcCodes;
     }
 
     public String getVin(){ return vin; }
     public void setVin(String vin){ this.vin = vin; }
 
-    public List<String> getDtcCodes(){ return dtcCodes; }
-    public void setDtcCodes(List<String> dtcCodes){ this.dtcCodes = dtcCodes; }
+    public List<DtcError> getDtcs(){ return dtcs; }
+    public void setDtcs(List<DtcError> dtcs){ this.dtcs = dtcs; }
 
 }

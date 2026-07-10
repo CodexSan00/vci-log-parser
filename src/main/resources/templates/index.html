@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>VCI Log Parser - Taller</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+
+</head>
+<body class="bg-light">
+
+<div class="container py-5">
+    <div class="row justify-content-center">
+        <div class="col-md-10">
+
+            <div class="card shadow-sm mb-4">
+                <div class="card-body text-center bg-dark text-white rounded">
+                    <h1 class="h3 mb-0">Extractor de Reportes Autocom</h1>
+                    <p class="text-muted mb-0 text-white-50 small mt-1">Ingresá el texto del scanner para procesar el vehículo y sus fallas</p>
+                </div>
+            </div>
+
+            <div class="card shadow-sm mb-4">
+                <div class="card-body">
+                    <form th:action="@{/}" method="POST">
+                        <div class="mb-3">
+                            <label for="rawText" class="form-label fw-bold">Pegá acá el texto copiado del PDF:</label>
+                            <textarea class="form-control font-monospace" id="rawText" name="rawText" rows="8"
+                                      placeholder="Ej: VIN: WDB934... UCE: 10 DTC: P0118 Descripción: Circuito alto..." required></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-primary w-100 fw-bold py-2">Procesar Reporte y Guardar en Base de Datos</button>
+                    </form>
+                </div>
+            </div>
+
+            <div class="card shadow-sm" th:if="${vehicle != null}">
+                <div class="card-header bg-primary text-white fw-bold">
+                     Información Extraída
+                </div>
+                <div class="card-body">
+                    <div class="p-3 bg-light rounded mb-4">
+                        <span class="fw-bold text-secondary">NÚMERO DE VIN / CHASIS:</span>
+                        <span class="h5 ms-2 fw-bold text-dark" th:text="${vehicle.vin}">-</span>
+                    </div>
+
+                    <h5 class="fw-bold mb-3 text-danger"> Códigos de Error Detectados:</h5>
+                    <div class="table-responsive">
+                        <table class="table table-striped table-hover align-middle">
+                            <thead class="table-dark">
+                            <tr>
+                                <th style="width: 20%;">Código DTC</th>
+                                <th>Descripción de la Falla</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr th:if="${#lists.isEmpty(vehicle.dtcs)}">
+                                <td colspan="2" class="text-center text-muted py-3">No se detectaron códigos de error en este reporte.</td>
+                            </tr>
+                            <tr th:each="dtc : ${vehicle.dtcs}">
+                                <td><span class="badge bg-danger fs-6" th:text="${dtc.code}">P0118</span></td>
+                                <td class="fw-semibold text-secondary" th:text="${dtc.description}">Descripción de prueba</td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

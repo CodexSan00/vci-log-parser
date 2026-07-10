@@ -38,15 +38,20 @@ public class ParserService {
         String[] lines = rawText.split("\\r?\n");
 
         for(String line : lines){
+            String cleanLine = line.replace("\"", "").trim();
             Matcher dtcMatcher = dtcLinePattern.matcher(line);
             if(dtcMatcher.find()){
                 String code = dtcMatcher.group(1);
                 String description = dtcMatcher.group(2);
 
-                if(description == null || description.trim().isEmpty()){
+                if(description !=  null){
+                    description =  description.replaceAll("^[,\\s]+", "").trim();
+                }
+
+                if(description == null || description.isEmpty()){
                     description = "No description available";
                 }
-                DtcError error = new DtcError(code, description.trim(), vehicle);
+                DtcError error = new DtcError(code, description, vehicle);
                 vehicle.getDtcs().add(error);
             }
         }

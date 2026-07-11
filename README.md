@@ -44,7 +44,7 @@ The system manages a **One-to-Many (1:N)** relationship mapped with Hibernate:
 
 1. **Clone the repository:**
    ```bash
-   git clone [https://github.com/YOUR_USERNAME/vci-parser.git](https://github.com/YOUR_USERNAME/vci-parser.git)
+   git clone https://github.com/CodexSan00/vci-log-parser
    cd vci-parser
    ```
 2. **Spin up the Database:** Ensure the docker-compose.yml file is in the root directory and run:

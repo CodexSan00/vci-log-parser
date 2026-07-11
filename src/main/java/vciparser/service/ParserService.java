@@ -51,8 +51,13 @@ public class ParserService {
                 if(description == null || description.isEmpty()){
                     description = "No description available";
                 }
-                DtcError error = new DtcError(code, description, vehicle);
-                vehicle.getDtcs().add(error);
+                //Verify if code already has been added to the list...
+                boolean dtcAlreadyExist = vehicle.getDtcs().stream()
+                        .anyMatch(error-> error.getCode().equals(code));
+                if(!dtcAlreadyExist){
+                    DtcError error = new DtcError(code, description, vehicle);
+                    vehicle.getDtcs().add(error);
+                }
             }
         }
         if(!vin.equals("Not found")){

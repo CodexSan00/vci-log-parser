@@ -22,13 +22,13 @@
 
             <div class="card shadow-sm mb-4">
                 <div class="card-body">
-                    <form th:action="@{/}" method="POST">
+                    <form th:action="@{/}" method="POST" enctype="multipart/form-data">
                         <div class="mb-3">
-                            <label for="rawText" class="form-label fw-bold">Pegá acá el texto copiado del PDF:</label>
-                            <textarea class="form-control font-monospace" id="rawText" name="rawText" rows="8"
-                                      placeholder="Ej: VIN: WDB934... UCE: 10 DTC: P0118 Descripción: Circuito alto..." required></textarea>
+                            <label for="pdfFile" class="form-label fw-bold">Seleccionar reporte PDF de  Autocom:</label>
+                            <input class="form-control" type="file"  id="pdfFile"  name="pdfFile" accept=".pdf" required>
+                            <div  class="form-text  text-muted">Subir archivo original exportado por el escáner</div>
                         </div>
-                        <button type="submit" class="btn btn-primary w-100 fw-bold py-2">Procesar Reporte y Guardar en Base de Datos</button>
+                        <button type="submit" class="btn btn-primary w-100 fw-bold py-2">Subir PDF, Procesar y Guardar</button>
                     </form>
                 </div>
             </div>

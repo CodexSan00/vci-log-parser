@@ -1,4 +1,5 @@
-# VCI Log Parser - Autocom Report Extractor
+## VCI Log Parser - Autocom Report Extractor
+
 A web application developed in **Java with Spring Boot** designed to optimize the workflow in automative repair shops.
 The system automates the reading of diagnostic reports in PDF format exported by **Autocom** scanners, extracting
 vehicle data and Diagnostic Trouble Codes (DTC), and stores them in a relational database.
